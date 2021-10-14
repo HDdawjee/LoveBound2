@@ -8,14 +8,16 @@ using UnityEngine.UI;
 
 public class MovementScript : MonoBehaviour
 
-
+    // This script deals with the changing of images and animations
 {
     [SerializeField]
     private List<CinemachineVirtualCamera> virtCameras;
     private static int CurrentCamera;
     private Text txtNPC;
+    private Button btnDate, btnDownload;
 
-    public Image Location, NPC;
+    public Image Location, NPC, Phone;
+    public Sprite ProfileAmina, ProfileEthan, ProfileZack;
     public Sprite imgRestaurant,imgPark, imgBlank;
     public Sprite imgDate1, imgDate2, imgFriend;
     public string sDate = "Tina"; 
@@ -51,39 +53,36 @@ public class MovementScript : MonoBehaviour
      
     }
 
-    public void Nametag()
-    {
-        if (NPC.sprite == imgDate1)
-        {
-            txtNPC.text = "Ethan"; 
-        }
-
-        else
-
-          if (NPC.sprite == imgFriend)
-        {
-            txtNPC.text = "Tina:";
-        }
-    }
 
     public void TinaDate()
     {
         NPC.sprite = imgFriend;
         Location.sprite = imgRestaurant;
-        sDate = "Tina";
+      
     }
 
     public void EthanDate()
     {
         NPC.sprite = imgDate1;
         Location.sprite = imgPark; 
-        sDate = "Ethan";
+        
     }
 
     public void ZackDate()
     {
         NPC.sprite = imgDate2;
         Location.sprite = imgRestaurant;
-        sDate = "Zack";
+      
     }
+
+    //public void Movement()
+    //{
+    //    // WASD Movement 
+    //    x = Input.GetAxis("Horizontal");
+    //    Debug.Log("Move!");
+    //    y = Input.GetAxis("Vertical");
+    //    move = new Vector3(x, 0.0f, y);
+
+    //    this.gameObject.transform.position += move * speed;
+    //}
 }

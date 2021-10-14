@@ -16,9 +16,10 @@ public class InkIntegrationScript : MonoBehaviour
     [SerializeField]
     private TextAsset DatewithTina;
 
-
-
+    [SerializeField]
+    private TextAsset DatewithZack;
     private Story _story;
+
     [SerializeField]
     private Text txtNPCs, txtAmina;
 
@@ -56,6 +57,7 @@ public class InkIntegrationScript : MonoBehaviour
     {
         _story = new Story(DatewithTina.text); 
         DisplayNextLine();
+        MScript.TinaDate();
     }
 
     public void StartStoryEthan()
@@ -65,7 +67,12 @@ public class InkIntegrationScript : MonoBehaviour
         MScript.EthanDate(); 
     }
 
-
+    public void StartStoryZack()
+    {
+        _story = new Story(DatewithZack.text);
+        DisplayNextLine();
+        MScript.ZackDate();
+    }
 
     // Update is called once per frame
     void Update()
@@ -75,7 +82,7 @@ public class InkIntegrationScript : MonoBehaviour
 
     public void DisplayNextLine()
     {
-        Debug.Log("Next Line");
+      //  Debug.Log("Next Line");
         if (_story.canContinue)
         {
             
