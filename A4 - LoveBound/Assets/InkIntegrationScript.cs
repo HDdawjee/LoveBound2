@@ -17,6 +17,9 @@ public class InkIntegrationScript : MonoBehaviour
     private TextAsset DatewithTina;
 
     [SerializeField]
+    private TextAsset DateTwoWithTina;
+
+    [SerializeField]
     private TextAsset DatewithZack;
     private Story _story;
 
@@ -41,7 +44,7 @@ public class InkIntegrationScript : MonoBehaviour
     
     // Start is called before the first frame update
 
-    private void Start()
+    private void Awake()
     {
        
         //RefreshChoiceView();
@@ -74,6 +77,14 @@ public class InkIntegrationScript : MonoBehaviour
         MScript.ZackDate();
     }
 
+    public void StoryDateTwoTina()
+    {
+        _story = new Story(DateTwoWithTina.text);
+        DisplayNextLine();
+        MScript.TinaDate();
+        MScript.Location.sprite = MScript.imgPark;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -101,9 +112,15 @@ public class InkIntegrationScript : MonoBehaviour
         {
             Debug.Log("Story has ended!");
             LBScript.bPhoneicon = true;
-
+            LBScript.buttonDate.interactable = true;
             if (vfx != null)
                 Instantiate(vfx, LBScript.btnPhone.transform.position, Quaternion.identity);
+
+            if (MScript.sDate == "Zack")
+            {
+                StoryDateTwoTina();
+                LBScript.bPhoneicon = false; 
+            }
         }
 
 
@@ -168,16 +185,16 @@ public class InkIntegrationScript : MonoBehaviour
             txtNPCs.text = "";
             txtAmina.fontStyle = FontStyle.Normal;
 
-           
+
 
         }
         else if (_story.currentTags.Contains("Tina"))
         {
-           txtNPCs.text = "Tina:";
+            txtNPCs.text = "Tina:";
             txtAmina.text = "";
             txtNPCs.fontStyle = FontStyle.Normal;
 
-            
+
         }
         else if (_story.currentTags.Contains("Ethan"))
         {
@@ -185,7 +202,7 @@ public class InkIntegrationScript : MonoBehaviour
             txtAmina.text = "";
             txtNPCs.fontStyle = FontStyle.Normal;
 
-            
+
         }
         else if (_story.currentTags.Contains("Zack"))
         {
@@ -211,8 +228,8 @@ public class InkIntegrationScript : MonoBehaviour
             txtNPCs.text = "";
             _textField.fontStyle = FontStyle.Bold;
             MScript.Location.sprite = MScript.imgBlank;
-            MScript.NPC.enabled = false; 
-            
+            MScript.NPC.enabled = false;
+
         }
         else if (_story.currentTags.Contains("Park"))
         {
@@ -222,6 +239,7 @@ public class InkIntegrationScript : MonoBehaviour
             MScript.Location.sprite = MScript.imgPark;
             MScript.NPC.enabled = false;
             MScript.NPC.enabled = true;
+
         }
     }
 
