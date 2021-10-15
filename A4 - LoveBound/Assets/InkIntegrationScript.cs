@@ -54,7 +54,11 @@ public class InkIntegrationScript : MonoBehaviour
         txtNPCs = GameObject.Find("txtNPC").GetComponent<Text>();
         txtAmina = GameObject.Find("txtCharacter").GetComponent<Text>();
 
-        StartStoryTina();
+      
+    }
+    private void Start()
+    {
+        StartStoryTina(); 
     }
     public void StartStoryTina()
     {

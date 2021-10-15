@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class LoveBoundScript : MonoBehaviour
 {
@@ -103,14 +105,10 @@ public class LoveBoundScript : MonoBehaviour
             MScript.Phone.sprite = MScript.ProfileZack;
             MScript.sDate = "Zack";
             bPhoneicon = false;
-          
+            StartCoroutine(WaitTimeZack());
+
         }
 
-    }
-
-    public void OnTriggerEnter2D(Collider2D col)
-    {
-        Debug.Log(col.name);
     }
 
     IEnumerator WaitTimeEthan()
@@ -120,8 +118,25 @@ public class LoveBoundScript : MonoBehaviour
         yield return new WaitForSeconds(6.5f);
         bCnvsLocation = true;
         bCnvsPhone = false;
+       // AnimationSceneLoad(); 
         IIScript.StartStoryEthan();
-
     }
 
+    IEnumerator WaitTimeZack()
+    {
+        // bDate = false;
+        buttonDate.interactable = false;
+        yield return new WaitForSeconds(6.5f);
+        bCnvsLocation = true;
+        bCnvsPhone = false;
+        // AnimationSceneLoad(); 
+        IIScript.StartStoryZack();
+    }
+
+    public void AnimationSceneLoad()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1 );
+    }
+
+    
 }
